@@ -23,7 +23,7 @@ int checkId(SNode* head,int index) {
     while (temp != NULL) {
         if (temp->data.id == index) {
             printf("ID da xua hien vui long nhap id khac \n");
-            return 1;
+            return -1;
         }
         temp = temp->next;
     }
@@ -40,28 +40,39 @@ void insertActivety() {
     printf("Moi nhap so luong hoat dong trong ngay : ");
     scanf("%d",&n);
     getchar();
-    for (int i=0;i<n;i++) {
+    for (int i = 0; i < n; i++) {
+        SNode* newNode = (SNode*)malloc(sizeof(SNode));  // Di chuyển vào trong for
+        if (newNode == NULL) {
+            printf("Khong the cap phat bo nho\n");
+            return;
+        }
         do {
             printf("Moi nhap ID :");
             scanf("%d",&newNode->data.id);
             getchar();
-        }while (checkId(head,newNode->data.id) == -1);
+        } while (checkId(head,newNode->data.id) == -1);
+
         printf("Moi nhap kieu hoat dong : ");
-        fgets(newNode->data.Type,100,stdin);
+        fgets(newNode->data.Type, 100, stdin);
         newNode->data.Type[strcspn(newNode->data.Type, "\n")] = '\0';
+
         printf("Moi nhap thoi gian thuc hien : ");
-        scanf("%d",&newNode->data.Duration);
+        scanf("%d", &newNode->data.Duration);
         getchar();
+
         printf("Moi nhap luong calo tieu thu : ");
-        scanf("%d",&newNode->data.Calories);
+        scanf("%d", &newNode->data.Calories);
         getchar();
+
         printf("Moi nhap thoi gian thu hien hanh dong : ");
-        fgets(newNode->data.Date,100,stdin);
+        fgets(newNode->data.Date, 100, stdin);
         newNode->data.Date[strcspn(newNode->data.Date, "\n")] = '\0';
+
         newNode->next = head;
         head = newNode;
-        printf("them hoat dong thanh cong \n");
+        printf("Them hoat dong thanh cong\n");
     }
+
 }
 
 void deleteActivety(int id) {
