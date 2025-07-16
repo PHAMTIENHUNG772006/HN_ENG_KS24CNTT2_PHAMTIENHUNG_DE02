@@ -41,7 +41,7 @@ void insertActivety() {
     scanf("%d",&n);
     getchar();
     for (int i = 0; i < n; i++) {
-        SNode* newNode = (SNode*)malloc(sizeof(SNode));  // Di chuyển vào trong for
+        SNode* newNode = (SNode*)malloc(sizeof(SNode));
         if (newNode == NULL) {
             printf("Khong the cap phat bo nho\n");
             return;
