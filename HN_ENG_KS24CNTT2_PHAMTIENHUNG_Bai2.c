@@ -39,7 +39,7 @@ void undoToRedo(Stack* undo,Stack* redo) {
     undo->top = temp->next;
     push(redo,temp->action);
     free(temp);
-    printf("Day cau lenh thanh cong \n");
+    printf("Day thao tac thanh cong \n");
     return;
 }
 void redoToUndo(Stack* undo,Stack* redo) {
@@ -51,19 +51,19 @@ void redoToUndo(Stack* undo,Stack* redo) {
     redo->top = temp->next;
     push(undo,temp->action);
     free(temp);
-    printf("Day cau lenh thanh cong \n");
+    printf("Day thao tac thanh cong \n");
     return;
 }
 
 void printStack(Stack* s) {
     if (isEmptyStack(s)) {
-        printf("History rong \n");
+        printf("Stack rong \n");
         return;
     }
     Node* temp = s->top;
     int i=0;
     while (temp != NULL) {
-        printf("Cau lenh %d : %s\n",++i,temp->action);
+        printf("thao tac ve %d : %s\n",++i,temp->action);
         temp = temp->next;
     }
     printf("\n");
@@ -87,7 +87,7 @@ int main() {
         switch (choice) {
             case 1:
                 char value[MAX_LENGTH];
-                printf("Moi nhap cau lenh : ");
+                printf("Moi nhap thao tac ve : ");
                 fgets(value,MAX_LENGTH,stdin);
                 value[strcspn(value,"\n")] = '\0';
                 push(&undoStack,value);
@@ -99,7 +99,7 @@ int main() {
                 redoToUndo(&undoStack, &redoStack);
                 break;
             case 4:
-                printf("History \n");
+                printf("Undo \n");
                 printStack(&undoStack);
                 printf("Redo\n");
                 printStack(&redoStack);
